@@ -1,0 +1,141 @@
+services:
+  # Redpanda (Kafka-compatible message broker)
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    container_name: mini-crm-redpanda
+    restart: unless-stopped
+    command:
+      - redpanda
+      - start
+      - --kafka-addr
+      - internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr
+      - internal://redpanda:9092,external://localhost:19092
+      - --pandaproxy-addr
+      - internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr
+      - internal://redpanda:8082,external://localhost:18082
+      - --schema-registry-addr
+      - internal://0.0.0.0:8081,external://0.0.0.0:18081
+      - --rpc-addr
+      - redpanda:33145
+      - --advertise-rpc-addr
+      - redpanda:33145
+      - --smp
+      - '1'
+      - --memory
+      - 1G
+      - --mode
+      - dev-container
+      - --default-log-level=info
+    ports:
+      - "18081:18081" # Schema Registry
+      - "18082:18082" # Pandaproxy
+      - "19092:19092" # Kafka
+      - "19644:9644"  # Admin API
+    volumes:
+      - redpanda_data:/var/lib/redpanda/data
+    networks:
+      - mini-crm-network
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mini-crm-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - MONGODB_URI=mongodb://host.docker.internal:27017/mini_crm
+      - KAFKA_BROKERS=redpanda:19092
+      - JWT_SECRET=dev-jwt-secret-key
+      - VENDOR_SIMULATOR_URL=http://vendor-sim:3001
+      - VENDOR_WEBHOOK_SECRET=dev-webhook-secret
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - redpanda
+    networks:
+      - mini-crm-network
+    command: npm run dev
+
+  # Worker Cluster
+  workers:
+    build:
+      context: ./workers
+      dockerfile: Dockerfile
+    container_name: mini-crm-workers
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://host.docker.internal:27017/mini_crm
+      - KAFKA_BROKERS=redpanda:19092
+      - VENDOR_SIMULATOR_URL=http://vendor-sim:3001
+      - VENDOR_WEBHOOK_SECRET=dev-webhook-secret
+    volumes:
+      - ./workers:/app
+      - /app/node_modules
+    depends_on:
+      - redpanda
+      - backend
+    networks:
+      - mini-crm-network
+    command: npm run dev
+
+  # Vendor Simulator
+  vendor-sim:
+    build:
+      context: ./vendor-sim
+      dockerfile: Dockerfile
+    container_name: mini-crm-vendor-sim
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - BACKEND_URL=http://backend:3000
+      - WEBHOOK_SECRET=dev-webhook-secret
+      - SUCCESS_RATE=0.9
+    volumes:
+      - ./vendor-sim:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - mini-crm-network
+    command: npm run dev
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mini-crm-frontend
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    networks:
+      - mini-crm-network
+    command: npm run dev
+
+volumes:
+  redpanda_data:
+
+networks:
+  mini-crm-network:
+    driver: bridge

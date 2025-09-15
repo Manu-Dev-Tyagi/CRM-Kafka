@@ -1,0 +1,38 @@
+{
+  "name": "mini-crm-backend",
+  "version": "1.0.0",
+  "description": "Mini CRM API Gateway",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
+  },
+  "dependencies": {
+    "fastify": "^4.24.3",
+    "@fastify/cors": "^8.4.0",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/cookie": "^8.3.0",
+    "@fastify/jwt": "^7.2.4",
+    "mongodb": "^6.3.0",
+    "kafkajs": "^2.2.4",
+    "google-auth-library": "^9.4.1",
+    "joi": "^17.11.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "openai": "^4.20.1",
+    "uuid": "^9.0.1",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "eslint": "^8.55.0",
+    "@types/node": "^20.10.4"
+  },
+  "keywords": ["crm", "api", "kafka", "mongodb"],
+  "author": "Mini CRM Team",
+  "license": "MIT"
+}

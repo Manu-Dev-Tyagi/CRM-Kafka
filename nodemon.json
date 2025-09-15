@@ -1,0 +1,7 @@
+{
+    "watch": ["workers/src", "backend/src"],
+    "ext": "js,json",
+    "ignore": ["baileys_auth/**/*", "node_modules"],
+    "exec": "node backend/src/index.js"
+  }
+  

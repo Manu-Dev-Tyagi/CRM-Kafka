@@ -1,0 +1,6 @@
+{
+    "watch": ["*.js"],
+    "ignore": ["../whatsapp_sessions/*", "node_modules/*"],
+    "ext": "js,json"
+  }
+  
