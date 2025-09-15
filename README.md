@@ -6,24 +6,8 @@ A comprehensive Customer Relationship Management (CRM) system built with Node.js
 
 ### System Components
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   Backend API   │    │   Workers       │
-│   (Next.js)     │◄──►│   (Fastify)     │◄──►│   Cluster       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                               │                        │
-                               ▼                        ▼
-                       ┌─────────────────┐    ┌─────────────────┐
-                       │   MongoDB       │    │   Kafka/Redpanda│
-                       │   Database      │    │   Message Broker│
-                       └─────────────────┘    └─────────────────┘
-                                                       │
-                                                       ▼
-                                              ┌─────────────────┐
-                                              │   WhatsApp      │
-                                              │   Integration   │
-                                              └─────────────────┘
-```
+<img width="952" height="1280" alt="image" src="https://github.com/user-attachments/assets/be22b6ec-f572-4279-a1f9-0cb3b3c197eb" />
+
 
 ### Microservices Architecture
 
@@ -1217,6 +1201,5 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Built with ❤️ for scalable customer communication**
 
 *This comprehensive Mini CRM system demonstrates enterprise-grade architecture with microservices, event-driven processing, robust WhatsApp messaging, and production-ready scalability. Perfect for interviews showcasing full-stack development skills, system design expertise, and real-world problem-solving capabilities.*
