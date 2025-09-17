@@ -67,7 +67,7 @@ A comprehensive Customer Relationship Management (CRM) system built with Node.js
 - **Webhook handling** for delivery receipts
 - **Production-ready configuration**
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -152,7 +152,7 @@ open http://localhost:3002
 open http://localhost:19644
 ```
 
-## 📚 Complete API Documentation
+##  Complete API Documentation
 
 ### Health & Status Endpoints
 
@@ -331,7 +331,7 @@ Standard CRUD operations for segments.
 }
 ```
 
-## 🔄 Kafka Message Flows & Event Architecture
+##  Kafka Message Flows & Event Architecture
 
 ### Topic Structure
 
@@ -394,7 +394,7 @@ API Gateway                Job Expander Worker           Send Worker
 }
 ```
 
-## 🧠 Advanced Segmentation Engine
+##  Advanced Segmentation Engine
 
 ### AST (Abstract Syntax Tree) Structure
 
@@ -517,7 +517,7 @@ The segmentation engine uses AST for complex query building:
 }
 ```
 
-## 🔧 Worker Architecture
+##  Worker Architecture
 
 ### Job Expander Worker (`workers/src/jobExpander.js`)
 
@@ -549,7 +549,7 @@ The segmentation engine uses AST for complex query building:
 - Retry logic and error handling
 - Real-time delivery status tracking
 
-## 📱 WhatsApp Integration
+##  WhatsApp Integration
 
 ### Connection Management
 - **Primary**: Baileys WhatsApp Web client
@@ -565,7 +565,7 @@ The segmentation engine uses AST for complex query building:
 5. Tracks delivery status
 6. Updates communication logs
 
-## 🛠️ Development Guide
+## 🛠 Development Guide
 
 ### Project Structure Deep Dive
 
@@ -655,9 +655,9 @@ curl -X POST http://localhost:3000/api/v1/leads/bulk \
   -d '{"leads": [{"name": "Test User", "emails": ["test@example.com"]}]}'
 ```
 
-## 🎉 System Achievements & Current Status
+##  System Achievements & Current Status
 
-### ✅ Successfully Implemented Features
+### Successfully Implemented Features
 
 **Core Infrastructure:**
 - [x] **Microservices Architecture** with proper separation of concerns
@@ -700,7 +700,7 @@ curl -X POST http://localhost:3000/api/v1/leads/bulk \
 - [x] **Performance Monitoring** with real-time statistics
 - [x] **Twilio Fallback Integration** for message delivery reliability
 
-### 🔧 Technical Fixes Implemented
+###  Technical Fixes Implemented
 
 **Critical Stability Issues Resolved:**
 - [x] **WhatsApp Connection Stability** - Implemented robust connection manager
@@ -718,7 +718,7 @@ curl -X POST http://localhost:3000/api/v1/leads/bulk \
 - [x] **Error Recovery Patterns** with retry logic and circuit breakers
 - [x] **Resource Cleanup** with proper graceful shutdown procedures
 
-### 🚧 Partially Implemented
+###  Partially Implemented
 
 **Frontend:**
 - [x] Basic Next.js structure with Tailwind CSS
@@ -739,7 +739,7 @@ curl -X POST http://localhost:3000/api/v1/leads/bulk \
 - [ ] Dead letter queue processing
 - [ ] Circuit breaker patterns
 
-### 📋 Future Enhancements
+###  Future Enhancements
 
 **Analytics & Reporting:**
 - [ ] Campaign performance dashboard
@@ -765,7 +765,7 @@ curl -X POST http://localhost:3000/api/v1/leads/bulk \
 - [ ] Audit logging
 - [ ] Data export capabilities
 
-## 🚨 Troubleshooting Guide
+##  Troubleshooting Guide
 
 ### Common Issues
 
@@ -886,7 +886,7 @@ console.log(astToMongoQuery.translate(ruleAst));
 - **Rich Media**: Support for images, documents, etc.
 - **Global Reach**: WhatsApp ubiquity in many markets
 
-## 🤝 Contributing
+##  Contributing
 
 ### Development Workflow
 
@@ -931,7 +931,7 @@ console.log(astToMongoQuery.translate(ruleAst));
 - Worker processing times
 - Database query performance
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Authentication & Authorization
 - JWT-based authentication
@@ -951,7 +951,7 @@ console.log(astToMongoQuery.translate(ruleAst));
 - Kafka message encryption (production)
 - Environment variable protection
 
-## 🎯 Frontend Development Guide
+##  Frontend Development Guide
 
 ### Technology Stack Requirements
 - **Framework**: Next.js 14+ with App Router
@@ -1166,33 +1166,13 @@ const useRealTimeUpdates = (campaignId) => {
    - CSV/Excel import/export functionality
    - Advanced filtering and search
 
-## 💼 Interview Presentation Points
 
-### Technical Highlights
-- **Microservices Architecture** with clear separation of concerns
-- **Event-Driven Processing** using Kafka for scalability
-- **WhatsApp Integration** with robust connection management
-- **AST-based Segmentation** for complex customer targeting
-- **Circuit Breaker Patterns** for system resilience
-- **Real-time Analytics** with MongoDB aggregation pipelines
-
-### Business Impact
-- **Cost-Effective Messaging** via WhatsApp (cheaper than SMS)
-- **Scalable Processing** handles thousands of leads and campaigns
-- **Real-time Monitoring** with comprehensive health checks
-- **Production Ready** with proper error handling and recovery
-
-### Problem-Solving Approach
-- **Connection Stability Issues** - Implemented circuit breaker and retry logic
-- **Duplicate Message Prevention** - Unique consumer group isolation
-- **Performance Optimization** - Rate limiting and concurrency control
-- **Error Recovery** - Comprehensive error handling and fallback mechanisms
 
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🆘 Support & Community
+##  Support & Community
 
 - **Issues**: [GitHub Issues](https://github.com/your-repo/mini-crm/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-repo/mini-crm/discussions)
